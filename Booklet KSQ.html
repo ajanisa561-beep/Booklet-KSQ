@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KSQ Guide Book – Kelompok Studi Qur'an</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #7a6230;
+    --deep: #0D1B2A;
+    --deep2: #132134;
+    --deep3: #1A2E45;
+    --cream: #F5EDD6;
+    --cream2: #EDE0C0;
+    --green: #1E4D3A;
+    --green-light: #2E7A5A;
+    --white: #FDFAF3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--deep) 0%, var(--deep3) 50%, var(--green) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(201,168,76,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(30,77,58,0.25) 0%, transparent 50%);
+  }
+
+  .cover-ornament {
+    font-family: 'Amiri', serif;
+    font-size: 64px;
+    color: var(--gold);
+    opacity: 0.9;
+    margin-bottom: 12px;
+    animation: fadeDown 1s ease both;
+  }
+
+  .cover-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 18px;
+    animation: fadeDown 1s 0.1s ease both;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 8px;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+
+  .cover-title span { color: var(--gold); }
+
+  .cover-sub {
+    font-family: 'Amiri', serif;
+    font-size: clamp(18px, 3vw, 24px);
+    color: var(--cream2);
+    margin-bottom: 32px;
+    font-style: italic;
+    animation: fadeDown 1s 0.3s ease both;
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 32px;
+    animation: fadeDown 1s 0.4s ease both;
+  }
+
+  .cover-tagline {
+    font-size: 14px;
+    color: var(--cream2);
+    max-width: 420px;
+    opacity: 0.85;
+    animation: fadeDown 1s 0.5s ease both;
+  }
+
+  .cover-badge {
+    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 40px;
+    padding: 10px 24px;
+    font-size: 13px;
+    color: var(--gold-light);
+    font-weight: 500;
+    letter-spacing: 1px;
+    animation: fadeDown 1s 0.6s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 30px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.35;
+    line-height: 1;
+    min-width: 50px;
+  }
+
+  .section-info { flex: 1; }
+
+  .section-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+    margin-bottom: 36px;
+  }
+
+  /* ── CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    background: var(--deep2);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 24px 20px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201,168,76,0.5);
+  }
+
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .card-text {
+    font-size: 13.5px;
+    color: var(--cream2);
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(30,77,58,0.2));
+    border-left: 3px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .highlight-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .highlight p {
+    font-size: 14px;
+    color: var(--cream2);
+    opacity: 0.9;
+  }
+
+  /* ── LIST ── */
+  .styled-list {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .styled-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 14px;
+    color: var(--cream2);
+  }
+
+  .styled-list li:last-child { border-bottom: none; }
+
+  .list-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  /* ── CABANG TABLE ── */
+  .cabang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .cabang-item {
+    background: var(--deep2);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--cream);
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .cabang-item:hover { background: var(--deep3); }
+
+  .cabang-emoji { font-size: 22px; }
+
+  /* ── TIMELINE / STEPS ── */
+  .timeline {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+
+  .timeline-dot {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--deep2);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--gold);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .timeline-content { flex: 1; padding-top: 6px; }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .timeline-text {
+    font-size: 13.5px;
+    color: var(--cream2);
+    opacity: 0.85;
+  }
+
+  /* ── QUOTE ── */
+  .arabic-quote {
+    text-align: center;
+    padding: 40px 20px;
+    margin: 40px 0;
+    position: relative;
+  }
+
+  .arabic-quote::before, .arabic-quote::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    margin: 16px 0;
+  }
+
+  .arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(24px, 5vw, 36px);
+    color: var(--gold-light);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .arabic-translation {
+    font-size: 13px;
+    color: var(--cream2);
+    opacity: 0.75;
+    font-style: italic;
+  }
+
+  /* ── CTA ── */
+  .cta-box {
+    background: linear-gradient(135deg, var(--green), var(--deep3));
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .cta-text {
+    font-size: 14px;
+    color: var(--cream2);
+    opacity: 0.85;
+    max-width: 420px;
+    margin: 0 auto 24px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--deep);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 14px 36px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .cta-btn:hover {
+    background: var(--gold-light);
+    transform: scale(1.03);
+  }
+
+  /* ── SEPARATOR ── */
+  .page-sep {
+    border: none;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    margin: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--deep);
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 12px;
+    color: var(--cream2);
+    opacity: 0.5;
+    letter-spacing: 1px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 500px) {
+    .page { padding: 40px 20px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .cabang-grid { grid-template-columns: 1fr 1fr; }
+  }
+ .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+} 
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-ornament">﷽</div>
+  <div class="cover-label">Panduan Resmi · 2025/2026</div>
+  <h1 class="cover-title">Kelompok<br>Studi <span>Qur'an</span></h1>
+  <p class="cover-sub">Membina · Mendelegasikan · Berprestasi</p>
+  <div class="cover-divider"></div>
+  <p class="cover-tagline">Wadah pengembangan kemampuan Al-Qur'an dan delegasi terbaik untuk ajang MTQ dari tingkat kampus hingga nasional.</p>
+  <div class="cover-badge">📖 Booklet KSQ</div>
+</section>
+
+<hr class="page-sep">
+
+<!-- SECTION 1: TENTANG KSQ -->
+<section class="page">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-info">
+      <div class="section-tag">Pengenalan</div>
+      <h2 class="section-title">Tentang KSQ</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="arabic-quote">
+    <p class="arabic-text">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</p>
+    <p class="arabic-translation">"Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya." — HR. Bukhari</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🌙</div>
+      <div class="card-title">Visi</div>
+      <p class="card-text">Menjadi pusat pembinaan Al-Qur'an yang melahirkan generasi unggul, berintegritas, dan berprestasi dalam bidang Al-Qur'an.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">Misi</div>
+      <p class="card-text">Membina kemampuan anggota, mendelegasikan peserta terbaik ke MTQ, serta membangun budaya cinta Al-Qur'an di lingkungan akademik.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <div class="card-title">Siapa Kami?</div>
+      <p class="card-text">KSQ terbuka untuk seluruh mahasiswa/siswa Universitas Muhammadiyah Surakarta yang ingin mengembangkan diri dalam bidang tilawah, tahfidz,tartil, cerdas cermat, dan karya tulis.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="page-sep">
+
+<!-- SECTION 2: PROGRAM -->
+<section class="page">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-info">
+      <div class="section-tag">Kegiatan</div>
+      <h2 class="section-title">Program Unggulan</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <ul class="styled-list">
+    <li><span class="list-dot"></span><span><strong>Tartil & Tilawah</strong> — Meningkatkan kemampuan membaca Al-Qur'an sesuai kaidah tajwid, fashahah (kefasihan), serta keindahan irama dan suara.</span></li>
+    <li><span class="list-dot"></span><span><strong>Recall al qur'an</strong> — membantu menyimak dan tes hafalan untuk persiapan lomba secara intensif.</span></li>
+    <li><span class="list-dot"></span><span><strong>Karya Tulis</strong> — membantu menyusun langkah-langkah sistematis: ide, kerangka, draf, revisi, hingga finalisasi. .</span></li>
+    <li><span class="list-dot"></span><span><strong>Pelatihan Fahmil</strong> — Persiapan lomba berbasis pemahaman isi Al-Qur'an dan pengetahuan islam lainnya.</span></li>
+    <li><span class="list-dot"></span><span><strong>Try-Out & Simulasi Lomba</strong> — Latihan tanding internal sebelum delegasi ke kompetisi resmi.</span></li>
+    <li><span class="list-dot"></span><span><strong>Coaching Clinic MTQ</strong> — Sesi intensif bersama alumni dan juara MTQ tingkat nasional.</span></li>
+  </ul>
+</section>
+
+<hr class="page-sep">
+
+<!-- SECTION 3: CABANG LOMBA -->
+<section class="page">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-info">
+      <div class="section-tag">Kompetisi</div>
+      <h2 class="section-title">Cabang Lomba MTQ</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="cabang-grid">
+    <div class="cabang-item"><span class="cabang-emoji">🎤</span> Tilawah Al-Qur'an</div>
+    <div class="cabang-item"><span class="cabang-emoji">📿</span> Tahfidz 1 Juz</div>
+    <div class="cabang-item"><span class="cabang-emoji">📿</span> Tahfidz 5 Juz</div>
+    <div class="cabang-item"><span class="cabang-emoji">📿</span> Tahfidz 10–30 Juz</div>
+    <div class="cabang-item"><span class="cabang-emoji">🔊</span> Tartil Al-Qur'an</div>
+    <div class="cabang-item"><span class="cabang-emoji">💡</span> Fahmil Qur'an</div>
+    <div class="cabang-item"><span class="cabang-emoji">🗣️</span> Syarhil Qur'an</div>
+    <div class="cabang-item"><span class="cabang-emoji">✍️</span> Khat/Kaligrafi</div>
+    <div class="cabang-item"><span class="cabang-emoji">📖</span> Tafsir Al-Qur'an</div>
+    <div class="cabang-item"><span class="cabang-emoji">🖊️</span> Karya Tulis</div>
+  </div>
+
+  <div class="highlight">
+    <p class="highlight-title">📌 Catatan Penting</p>
+    <p>Cabang lomba dapat disesuaikan dengan penyelenggara MTQ yang dituju (tingkat kampus, kota, provinsi, hingga nasional). KSQ menyiapkan delegasi untuk semua cabang yang tersedia.</p>
+  </div>
+</section>
+
+<hr class="page-sep">
+
+  <!-- SECTION JOURNEY -->
+<section class="page">
+  <div class="section-header">
+    <div class="section-number">★</div>
+    <div class="section-info">
+      <div class="section-tag">Dokumentasi</div>
+      <h2 class="section-title">Journey KSQ</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="gallery">
+    <img src="MTQMN-Jambi.png" alt="">
+    <img src="expo-andalas.png" alt="">
+    <img src="Fiti-fiti.png" alt="">
+    <img src="Foto-foto.png" alt="">
+    <img src="Rame-ramaian.png" alt="">
+    <img src="Mbak-mbak.png" alt="">
+  </div>
+</section>
+
+<hr class="page-sep">
+
+<!-- SECTION 4: PENDELEGASIAN -->
+<section class="page">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-info">
+      <div class="section-tag">Mekanisme</div>
+      <h2 class="section-title">Alur Pendelegasian</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">1</div>
+      <div class="timeline-content">
+        <p class="timeline-title">Pendaftaran Minat</p>
+        <p class="timeline-text">Anggota mendaftarkan diri sesuai cabang lomba yang diminati melalui formulir yang disediakan KSQ.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">2</div>
+      <div class="timeline-content">
+        <p class="timeline-title">Asesmen & Pemetaan</p>
+        <p class="timeline-text">Tim pembina melakukan pemetakan kemampuan dan potensi setiap calon delegasi.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">3</div>
+      <div class="timeline-content">
+        <p class="timeline-title">Pelatihan Intensif</p>
+        <p class="timeline-text">Calon delegasi mengikuti program latihan khusus sesuai cabang, dipandu oleh pembimbing profesional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="page-sep">
+
+<!-- SECTION 5: KEUNTUNGAN -->
+<section class="page">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div class="section-info">
+      <div class="section-tag">Manfaat</div>
+      <h2 class="section-title">Keuntungan Bergabung</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🏆</div>
+      <div class="card-title">Prestasi Lomba</div>
+      <p class="card-text">Kesempatan mewakili UMS di MTQ tingkat kampus, kota, provinsi, hingga nasional.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">👨‍🏫</div>
+      <div class="card-title">Pembimbing Ahli</div>
+      <p class="card-text">Dibimbing langsung oleh orang yang berpengalaman dari alumni juara MTQ.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">Jaringan Luas</div>
+      <p class="card-text">Terhubung dengan komunitas pecinta Al-Qur'an lintas lembaga dan daerah.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📜</div>
+      <div class="card-title">Insentif Pemenang</div>
+      <p class="card-text">Mendapat insentif untuk juara 1,2,3 dan biaya transportasi.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">❤️</div>
+      <div class="card-title">Lingkungan Positif</div>
+      <p class="card-text">Bersama teman-teman yang memiliki semangat yang sama dalam mendekatkan diri kepada Al-Qur'an.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="page-sep">
+
+<!-- SECTION 6: CARA BERGABUNG -->
+<section class="page">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <div class="section-info">
+      <div class="section-tag">Pendaftaran</div>
+      <h2 class="section-title">Cara Bergabung</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <ul class="styled-list">
+    <li><span class="list-dot"></span><span>Isi formulir pendaftaran melalui link/tautan yang disebarkan pengurus KSQ.</span></li>
+    <li><span class="list-dot"></span><span>Pilih satu atau lebih cabang yang ingin dikembangkan.</span></li>
+    <li><span class="list-dot"></span><span>Konfirmasi pendaftaran via WhatsApp/kontak pengurus yang tersedia.</span></li>
+  </ul>
+
+  <div class="highlight">
+    <p class="highlight-title">🕐 Syarat Umum</p>
+    <p>Beragama Islam · Memiliki niat dan komitmen · dan Siap mendedikasikan waktu untuk latihan dan delegasi lomba.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3 class="cta-title">Siap Bergabung Bersama Kami?</h3>
+    <p class="cta-text">Jadilah bagian dari generasi Qur'ani yang berprestasi. Daftarkan dirimu sekarang dan mulailah perjalanan indah bersama Al-Qur'an.</p>
+    <a href="#" class="cta-btn">📝 Daftar Sekarang</a>
+  </div>
+</section>
+
+<hr class="page-sep">
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>KELOMPOK STUDI QUR'AN &nbsp;·&nbsp; booklet KSQ &nbsp;·&nbsp; 2025/2026</p>
+  <p style="margin-top:8px;">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+</footer>
+
+</body>
+</html>
